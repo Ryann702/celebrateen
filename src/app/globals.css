@@ -267,6 +267,61 @@ button:not(:disabled):active {
   color: var(--muted);
 }
 
+.presentation-question {
+  width: min(100%, 62rem);
+  padding: 4rem 5rem;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.3), transparent 28rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.12));
+  box-shadow:
+    0 28px 80px rgba(35, 89, 99, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(18px) saturate(1.2);
+}
+
+.presentation-name {
+  display: inline-flex;
+  min-width: 12rem;
+  justify-content: center;
+  border-bottom: 2px solid rgba(255, 217, 107, 0.95);
+  padding: 0 1.5rem 0.6rem;
+  color: rgba(34, 48, 58, 0.78);
+  font-size: 1rem;
+  font-weight: 650;
+  text-transform: uppercase;
+}
+
+.presentation-name + h1 {
+  margin-top: 2rem;
+}
+
+.presentation-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 20;
+  display: grid;
+  width: 4.5rem;
+  height: 4.5rem;
+  place-items: center;
+  border-radius: 999px;
+  color: rgba(34, 48, 58, 0.55);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  transform: translateY(-50%);
+}
+
+.presentation-arrow:hover {
+  color: rgba(34, 48, 58, 0.82);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.presentation-arrow:disabled {
+  opacity: 0.22;
+}
+
 .reveal-field {
   display: grid;
   grid-template-rows: 0fr;
@@ -301,6 +356,21 @@ button:not(:disabled):active {
 
   .choice-glow::after {
     animation: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .presentation-question {
+    padding: 3rem 1.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .presentation-arrow {
+    top: auto;
+    bottom: 2rem;
+    width: 3.25rem;
+    height: 3.25rem;
+    transform: none;
   }
 }
 

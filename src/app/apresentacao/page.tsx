@@ -153,39 +153,39 @@ export default function PresentationPage() {
 
   return (
     <DecorativeStage>
-      <section className="grid min-h-dvh grid-cols-[88px_1fr_88px] items-center gap-3 px-3 py-8 sm:grid-cols-[140px_1fr_140px] sm:px-8">
+      <section className="relative grid min-h-dvh place-items-center px-6 py-10 text-center sm:px-12">
         <button
           onClick={goPrevious}
           disabled={currentIndex === 0}
-          className="liquid-button mx-auto grid size-16 place-items-center rounded-full text-white transition disabled:opacity-20 sm:size-20"
+          className="presentation-arrow left-4 sm:left-10"
           aria-label="Pergunta anterior"
         >
-          <ArrowLeft size={36} />
+          <ArrowLeft size={42} strokeWidth={1.8} />
         </button>
 
-        <article className="glass-panel mx-auto w-full max-w-4xl rounded-2xl px-6 py-8 text-center sm:px-12 sm:py-12">
-          {currentQuestion.name ? (
-            <div className="mx-auto mb-6 max-w-sm rounded-xl bg-yellow-300/80 px-6 py-2 text-base font-semibold uppercase text-slate-800">
-              {currentQuestion.name}
-            </div>
-          ) : null}
-          <h1
-            className={`text-balance break-words font-semibold leading-tight text-slate-800 ${questionTextSize}`}
-          >
-            {currentQuestion.question}
-          </h1>
-        </article>
+        <div className="mx-auto grid w-full max-w-5xl place-items-center">
+          <article className="presentation-question">
+            {currentQuestion.name ? (
+              <p className="presentation-name">{currentQuestion.name}</p>
+            ) : null}
+            <h1
+              className={`text-balance break-words font-semibold leading-tight text-slate-800 ${questionTextSize}`}
+            >
+              {currentQuestion.question}
+            </h1>
+          </article>
+        </div>
 
         <button
           onClick={goNext}
           disabled={currentIndex === questions.length - 1}
-          className="liquid-button mx-auto grid size-16 place-items-center rounded-full text-white transition disabled:opacity-20 sm:size-20"
+          className="presentation-arrow right-4 sm:right-10"
           aria-label="Próxima pergunta"
         >
-          <ArrowRight size={36} />
+          <ArrowRight size={42} strokeWidth={1.8} />
         </button>
 
-        <div className="col-span-3 flex justify-center gap-3">
+        <div className="absolute bottom-24 left-1/2 flex -translate-x-1/2 justify-center gap-3 sm:bottom-16">
           {progress.map((item) => (
             <span
               key={item.id}
