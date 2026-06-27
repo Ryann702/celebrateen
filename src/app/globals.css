@@ -41,7 +41,6 @@ html {
 
 body {
   min-height: 100%;
-  min-height: 100svh;
   margin: 0;
   overflow-x: hidden;
   overflow-y: visible;
@@ -54,17 +53,12 @@ body {
 }
 
 #app-root {
-  min-height: 100%;
-  min-height: 100svh;
   overflow-x: hidden;
   background: var(--app-surface);
   isolation: isolate;
 }
 
 @supports (min-height: 100dvh) {
-  body,
-  #app-root,
-  .stage-bg,
   .admin-bg {
     min-height: 100dvh;
   }
@@ -92,11 +86,14 @@ button:not(:disabled):active {
 
 .stage-bg,
 .admin-bg {
-  min-height: 100svh;
   overflow-x: hidden;
   overscroll-behavior-x: none;
   overscroll-behavior-y: none;
   background: var(--app-surface);
+}
+
+.admin-bg {
+  min-height: 100svh;
 }
 
 @supports (overflow: clip) {
@@ -262,7 +259,7 @@ button:not(:disabled):active {
 
 .soft-title {
   color: var(--foreground);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0;
 }
 

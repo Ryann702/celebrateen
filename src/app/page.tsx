@@ -41,9 +41,9 @@ export default function PublicQuestionPage() {
   }
 
   return (
-    <DecorativeStage>
-      <section className="mx-auto flex min-h-dvh w-full max-w-[1060px] flex-col px-5 py-8 sm:px-8">
-        <div className="flex flex-1 flex-col items-center justify-center">
+    <DecorativeStage className="public-stage">
+      <section className="mx-auto flex w-full max-w-[1060px] flex-col px-5 py-8 sm:px-8">
+        <div className="flex flex-col items-center">
           <CelebraLogo />
 
           <div className="mt-5 text-center">
@@ -60,7 +60,7 @@ export default function PublicQuestionPage() {
             className="glass-panel mt-6 w-full max-w-[860px] rounded-2xl p-6 sm:p-8"
           >
           <div>
-            <div className="flex items-center gap-2 text-sm font-bold uppercase text-slate-700">
+            <div className="flex items-center gap-2 text-sm font-semibold uppercase text-slate-700">
               <UserRound size={18} />
               Deseja se identificar?
             </div>
@@ -68,7 +68,7 @@ export default function PublicQuestionPage() {
               <button
                 type="button"
                 onClick={() => setWantsName(true)}
-                className={`h-12 rounded-xl text-sm font-bold uppercase ${
+                className={`h-12 rounded-xl text-sm font-semibold uppercase ${
                   wantsName
                     ? "bg-pink-500 text-white shadow-lg shadow-pink-500/20"
                     : "glass-control text-slate-700 hover:border-pink-300"
@@ -79,7 +79,7 @@ export default function PublicQuestionPage() {
               <button
                 type="button"
                 onClick={() => setWantsName(false)}
-                className={`h-12 rounded-xl text-sm font-bold uppercase ${
+                className={`h-12 rounded-xl text-sm font-semibold uppercase ${
                   !wantsName
                     ? "bg-pink-500 text-white shadow-lg shadow-pink-500/20"
                     : "glass-control text-slate-700 hover:border-pink-300"
@@ -96,7 +96,7 @@ export default function PublicQuestionPage() {
           >
             <div className="min-h-0 overflow-hidden">
               <label className="block pt-6">
-                <span className="text-sm font-bold uppercase text-slate-700">
+                <span className="text-sm font-semibold uppercase text-slate-700">
                   Nome{" "}
                   <span className="font-semibold text-zinc-500">
                     (opcional)
@@ -115,7 +115,7 @@ export default function PublicQuestionPage() {
           </div>
 
           <label className="mt-6 block">
-            <span className="flex items-center gap-2 text-sm font-bold uppercase text-slate-700">
+            <span className="flex items-center gap-2 text-sm font-semibold uppercase text-slate-700">
               <MessageCircle size={18} />
               Sua pergunta
             </span>
@@ -145,7 +145,7 @@ export default function PublicQuestionPage() {
           <button
             type="submit"
             disabled={status === "sending"}
-            className="liquid-button mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-xl px-5 text-sm font-bold uppercase text-white transition disabled:cursor-not-allowed disabled:opacity-70"
+            className="liquid-button mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold uppercase text-white transition disabled:cursor-not-allowed disabled:opacity-70"
           >
             {status === "sending" ? "Enviando..." : "Enviar pergunta"}
             <Send size={17} />

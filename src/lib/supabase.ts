@@ -20,7 +20,7 @@ function getJwtRole(key: string) {
 
 export function createSupabaseAdmin() {
   const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
 
   if (!url || !key) {
     throw new Error(
@@ -28,9 +28,19 @@ export function createSupabaseAdmin() {
     );
   }
 
+  if (
+    key.startsWith("sb_publishable_") ||
+    key.startsWith("sb_anon_") ||
+    key.toLowerCase().includes("anon")
+  ) {
+    throw new Error(
+      "SUPABASE_SERVICE_ROLE_KEY está usando uma chave anon/publishable. Use a service_role/secret key do Supabase.",
+    );
+  }
+
   const role = getJwtRole(key);
 
-  if (role && role !== "service_role") {
+  if (role !== null && role !== "service_role") {
     throw new Error(
       "SUPABASE_SERVICE_ROLE_KEY precisa ser a chave service_role, não a anon/publishable key.",
     );

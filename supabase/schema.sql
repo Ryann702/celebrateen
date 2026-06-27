@@ -17,6 +17,9 @@ create index if not exists questions_selected_position_idx
 
 alter table public.questions enable row level security;
 
+grant usage on schema public to service_role;
+grant all privileges on table public.questions to service_role;
+
 drop policy if exists "service role manages questions" on public.questions;
 
 create policy "service role manages questions"

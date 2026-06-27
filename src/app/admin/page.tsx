@@ -5,10 +5,8 @@ import {
   ArrowDown,
   ArrowUp,
   Check,
-  ListChecks,
   LogOut,
   MessageSquareText,
-  MonitorPlay,
   Play,
   RefreshCw,
   Search,
@@ -233,7 +231,7 @@ export default function AdminPage() {
             Área administrativa
           </h1>
           <label className="mt-6 block">
-            <span className="text-sm font-bold uppercase text-slate-700">
+            <span className="text-sm font-semibold uppercase text-slate-700">
               Senha
             </span>
             <input
@@ -248,7 +246,7 @@ export default function AdminPage() {
               {error}
             </p>
           ) : null}
-          <button className="liquid-button mt-5 h-12 w-full rounded-xl text-sm font-bold uppercase text-white transition">
+          <button className="liquid-button mt-5 h-12 w-full rounded-xl text-sm font-semibold uppercase text-white transition">
             Entrar
           </button>
         </form>
@@ -259,25 +257,17 @@ export default function AdminPage() {
   return (
     <main className="admin-bg min-h-dvh">
       <div className="grid min-h-dvh grid-cols-1 lg:grid-cols-[250px_1fr]">
-        <aside className="glass-panel m-4 rounded-2xl px-5 py-5 text-slate-700 lg:min-h-[calc(100dvh-2rem)]">
-          <CelebraLogo compact />
-          <nav className="mt-8 grid gap-2 text-sm font-bold">
+        <aside className="glass-panel m-4 flex rounded-2xl px-5 py-5 text-slate-700 lg:min-h-[calc(100dvh-2rem)] lg:flex-col">
+          <CelebraLogo compact className="grid place-items-center" />
+          <nav className="mt-8 grid gap-2 text-sm font-semibold">
             <span className="liquid-button flex items-center gap-3 rounded-xl px-4 py-3 text-white">
               <MessageSquareText size={18} />
               Perguntas
             </span>
-            <span className="flex items-center gap-3 rounded-xl px-4 py-3 text-slate-600">
-              <ListChecks size={18} />
-              Selecionadas
-            </span>
-            <span className="flex items-center gap-3 rounded-xl px-4 py-3 text-slate-600">
-              <MonitorPlay size={18} />
-              Apresentação
-            </span>
           </nav>
           <button
             onClick={logout}
-            className="mt-8 flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-bold text-slate-600 transition hover:bg-white/40 lg:absolute lg:bottom-6"
+            className="mt-8 flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-white/40 lg:mt-auto"
           >
             <LogOut size={18} />
             Sair
@@ -304,10 +294,10 @@ export default function AdminPage() {
               />
             </label>
             <div className="glass-card rounded-xl px-5 py-3 text-center">
-              <p className="text-[10px] font-bold uppercase text-zinc-500">
+              <p className="text-[10px] font-semibold uppercase text-zinc-500">
                 Total de perguntas
               </p>
-              <strong className="block text-2xl font-bold text-slate-800">
+              <strong className="block text-2xl font-semibold text-slate-800">
                 {questions.length}
               </strong>
             </div>
@@ -317,7 +307,7 @@ export default function AdminPage() {
             <button
               onClick={() => void loadQuestions()}
               disabled={loading}
-              className="glass-card inline-flex h-10 items-center gap-2 rounded-xl px-4 text-sm font-bold uppercase text-slate-700 transition hover:border-pink-300 disabled:opacity-60"
+              className="glass-card inline-flex h-10 items-center gap-2 rounded-xl px-4 text-sm font-semibold uppercase text-slate-700 transition hover:border-pink-300 disabled:opacity-60"
             >
               <RefreshCw size={16} className={loading ? "animate-spin" : ""} />
               Atualizar
@@ -353,15 +343,15 @@ export default function AdminPage() {
                     <Check size={16} />
                   </button>
                   <div className="min-w-0 flex-1">
-                    <h2 className="truncate text-sm font-bold text-slate-800">
+                    <h2 className="truncate text-sm font-semibold text-slate-800">
                       {question.name || "Anônimo"}
                     </h2>
-                    <p className="text-xs font-semibold text-zinc-500">
+                    <p className="text-xs font-medium text-zinc-500">
                       {formatTime(question.created_at)}
                     </p>
                   </div>
                 </div>
-                <p className="mt-5 text-lg font-semibold leading-snug text-slate-800">
+                <p className="mt-5 text-lg font-medium leading-snug text-slate-800">
                   {question.question}
                 </p>
               </article>
@@ -382,7 +372,7 @@ export default function AdminPage() {
                 <button
                   onClick={startPresentation}
                   disabled={!selectedQuestions.length}
-                  className="liquid-button inline-flex h-12 items-center justify-center gap-2 rounded-xl px-5 text-sm font-bold uppercase text-white transition disabled:cursor-not-allowed disabled:opacity-50"
+                  className="liquid-button inline-flex h-12 items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold uppercase text-white transition disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <Play size={17} />
                   Iniciar apresentação
@@ -390,7 +380,7 @@ export default function AdminPage() {
                 <button
                   onClick={clearSelection}
                   disabled={!selectedQuestions.length}
-                  className="glass-control inline-flex h-12 items-center justify-center gap-2 rounded-xl px-5 text-sm font-bold uppercase text-slate-600 transition hover:border-pink-300 hover:text-pink-600 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="glass-control inline-flex h-12 items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold uppercase text-slate-600 transition hover:border-pink-300 hover:text-pink-600 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <Trash2 size={16} />
                   Limpar seleção
@@ -404,11 +394,11 @@ export default function AdminPage() {
                   key={question.id}
                   className="glass-card grid gap-3 rounded-xl p-3 sm:grid-cols-[48px_1fr_auto] sm:items-center"
                 >
-                  <div className="grid size-10 place-items-center rounded-xl bg-pink-500 text-sm font-bold text-white">
+                  <div className="grid size-10 place-items-center rounded-xl bg-pink-500 text-sm font-semibold text-white">
                     {index + 1}
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm font-bold text-slate-800">
+                    <p className="text-sm font-semibold text-slate-800">
                       {question.name || "Anônimo"}
                     </p>
                     <p className="truncate text-sm font-medium text-slate-600">

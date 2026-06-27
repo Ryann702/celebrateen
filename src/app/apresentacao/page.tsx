@@ -165,7 +165,7 @@ export default function PresentationPage() {
 
         <article className="glass-panel mx-auto w-full max-w-4xl rounded-2xl px-6 py-8 text-center sm:px-12 sm:py-12">
           {currentQuestion.name ? (
-            <div className="mx-auto mb-6 max-w-sm rounded-xl bg-yellow-300/80 px-6 py-2 text-base font-bold uppercase text-slate-800">
+            <div className="mx-auto mb-6 max-w-sm rounded-xl bg-yellow-300/80 px-6 py-2 text-base font-semibold uppercase text-slate-800">
               {currentQuestion.name}
             </div>
           ) : null}
