@@ -4,6 +4,7 @@ import { createSupabaseAdmin } from "@/lib/supabase";
 import type { QuestionPatch } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 type IncomingPatch = {
   id: unknown;
@@ -11,15 +12,25 @@ type IncomingPatch = {
   position: unknown;
 };
 
+type SupabaseResult =
+  | { ok: true; client: ReturnType<typeof createSupabaseAdmin> }
+  | { ok: false; error: string };
+
 function jsonError(message: string, status = 400) {
   return NextResponse.json({ error: message }, { status });
 }
 
-function getSupabase() {
+function getSupabase(): SupabaseResult {
   try {
-    return createSupabaseAdmin();
-  } catch {
-    return null;
+    return { ok: true, client: createSupabaseAdmin() };
+  } catch (error) {
+    return {
+      ok: false,
+      error:
+        error instanceof Error
+          ? error.message
+          : "Não foi possível configurar o Supabase.",
+    };
   }
 }
 
@@ -28,11 +39,13 @@ export async function GET(request: Request) {
     return jsonError("Senha administrativa inválida.", 401);
   }
 
-  const supabase = getSupabase();
+  const supabaseResult = getSupabase();
 
-  if (!supabase) {
-    return jsonError("Configure as variáveis do Supabase.", 500);
+  if (!supabaseResult.ok) {
+    return jsonError(supabaseResult.error, 500);
   }
+
+  const supabase = supabaseResult.client;
 
   const url = new URL(request.url);
   const selectedOnly = url.searchParams.get("selected") === "true";
@@ -58,11 +71,13 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const supabase = getSupabase();
+  const supabaseResult = getSupabase();
 
-  if (!supabase) {
-    return jsonError("Configure as variáveis do Supabase.", 500);
+  if (!supabaseResult.ok) {
+    return jsonError(supabaseResult.error, 500);
   }
+
+  const supabase = supabaseResult.client;
 
   const body = await request.json().catch(() => null);
   const name = typeof body?.name === "string" ? body.name.trim() : "";
@@ -97,11 +112,13 @@ export async function PATCH(request: Request) {
     return jsonError("Senha administrativa inválida.", 401);
   }
 
-  const supabase = getSupabase();
+  const supabaseResult = getSupabase();
 
-  if (!supabase) {
-    return jsonError("Configure as variáveis do Supabase.", 500);
+  if (!supabaseResult.ok) {
+    return jsonError(supabaseResult.error, 500);
   }
+
+  const supabase = supabaseResult.client;
 
   const body = await request.json().catch(() => null);
   const updates: IncomingPatch[] = Array.isArray(body?.updates)
