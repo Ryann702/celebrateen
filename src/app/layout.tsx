@@ -27,7 +27,7 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="bg-[#8ce6db] text-slate-800">
+      <body>
         <div id="app-root">{children}</div>
       </body>
     </html>

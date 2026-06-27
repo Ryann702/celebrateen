@@ -11,6 +11,10 @@
   --glass: rgba(255, 255, 255, 0.58);
   --glass-strong: rgba(255, 255, 255, 0.74);
   --glass-border: rgba(255, 255, 255, 0.72);
+  --app-surface:
+    radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.48), transparent 22rem),
+    radial-gradient(circle at 74% 20%, rgba(255, 255, 255, 0.26), transparent 24rem),
+    linear-gradient(135deg, #9eece2 0%, #78decc 50%, #9bece2 100%);
 }
 
 @theme inline {
@@ -28,8 +32,9 @@ html {
   height: 100%;
   min-height: 100%;
   overflow-x: hidden;
-  overscroll-behavior: none;
-  background: var(--background);
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
+  background: var(--app-surface);
 }
 
 body {
@@ -37,18 +42,21 @@ body {
   min-height: 100svh;
   margin: 0;
   overflow-x: hidden;
-  overscroll-behavior: none;
-  background: var(--background);
+  overflow-y: auto;
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
+  background: var(--app-surface);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   -webkit-text-size-adjust: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 #app-root {
   min-height: 100%;
   min-height: 100svh;
   overflow-x: hidden;
-  background: var(--background);
+  background: var(--app-surface);
   isolation: isolate;
 }
 
@@ -85,11 +93,19 @@ button:not(:disabled):active {
 .admin-bg {
   min-height: 100svh;
   overflow-x: hidden;
-  overscroll-behavior: none;
-  background:
-    radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.48), transparent 22rem),
-    radial-gradient(circle at 74% 20%, rgba(255, 255, 255, 0.26), transparent 24rem),
-    linear-gradient(135deg, #9eece2 0%, #78decc 50%, #9bece2 100%);
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
+  background: var(--app-surface);
+}
+
+@supports (overflow: clip) {
+  html,
+  body,
+  #app-root,
+  .stage-bg,
+  .admin-bg {
+    overflow-x: clip;
+  }
 }
 
 .glass-panel {

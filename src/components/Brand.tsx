@@ -29,7 +29,7 @@ export function DecorativeStage({
   className?: string;
 }) {
   return (
-    <main className={`stage-bg relative min-h-dvh overflow-hidden ${className}`}>
+    <main className={`stage-bg relative min-h-dvh ${className}`}>
       <div className="shape shape-pink-left" />
       <div className="shape shape-pink-right" />
       <div className="shape shape-yellow-left" />
