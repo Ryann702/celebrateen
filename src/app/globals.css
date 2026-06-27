@@ -25,14 +25,40 @@
 }
 
 html {
+  height: 100%;
   min-height: 100%;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  background: var(--background);
 }
 
 body {
   min-height: 100%;
+  min-height: 100svh;
+  margin: 0;
+  overflow-x: hidden;
+  overscroll-behavior: none;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+#app-root {
+  min-height: 100%;
+  min-height: 100svh;
+  overflow-x: hidden;
+  background: var(--background);
+  isolation: isolate;
+}
+
+@supports (min-height: 100dvh) {
+  body,
+  #app-root,
+  .stage-bg,
+  .admin-bg {
+    min-height: 100dvh;
+  }
 }
 
 button,
@@ -57,6 +83,9 @@ button:not(:disabled):active {
 
 .stage-bg,
 .admin-bg {
+  min-height: 100svh;
+  overflow-x: hidden;
+  overscroll-behavior: none;
   background:
     radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.48), transparent 22rem),
     radial-gradient(circle at 74% 20%, rgba(255, 255, 255, 0.26), transparent 24rem),
