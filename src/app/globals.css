@@ -32,9 +32,11 @@ html {
   height: 100%;
   min-height: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
   overscroll-behavior-x: none;
   overscroll-behavior-y: none;
   background: var(--app-surface);
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -42,14 +44,13 @@ body {
   min-height: 100svh;
   margin: 0;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: visible;
   overscroll-behavior-x: none;
   overscroll-behavior-y: none;
   background: var(--app-surface);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   -webkit-text-size-adjust: 100%;
-  -webkit-overflow-scrolling: touch;
 }
 
 #app-root {
