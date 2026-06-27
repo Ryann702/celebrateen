@@ -255,11 +255,11 @@ export default function AdminPage() {
   }
 
   return (
-    <main className="admin-bg min-h-dvh">
-      <div className="grid min-h-dvh grid-cols-1 lg:grid-cols-[250px_1fr]">
-        <aside className="glass-panel m-4 flex rounded-2xl px-5 py-5 text-slate-700 lg:min-h-[calc(100dvh-2rem)] lg:flex-col">
-          <CelebraLogo compact className="grid place-items-center" />
-          <nav className="mt-8 grid gap-2 text-sm font-semibold">
+    <main className="admin-bg min-h-svh">
+      <div className="grid min-h-svh grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)]">
+        <aside className="glass-panel m-4 flex flex-col gap-4 rounded-2xl px-5 py-5 text-slate-700 lg:m-6 lg:min-h-[calc(100svh-3rem)]">
+          <CelebraLogo compact className="grid place-items-center lg:pt-2" />
+          <nav className="grid gap-2 text-sm font-semibold lg:mt-4">
             <span className="liquid-button flex items-center gap-3 rounded-xl px-4 py-3 text-white">
               <MessageSquareText size={18} />
               Perguntas
@@ -267,14 +267,14 @@ export default function AdminPage() {
           </nav>
           <button
             onClick={logout}
-            className="mt-8 flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-white/40 lg:mt-auto"
+            className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-white/40 lg:mt-auto"
           >
             <LogOut size={18} />
             Sair
           </button>
         </aside>
 
-        <section className="px-4 py-6 sm:px-8 lg:px-10">
+        <section className="px-4 pb-8 pt-2 sm:px-8 lg:px-8 lg:py-6">
           <header className="grid gap-4 md:grid-cols-[1fr_auto_auto] md:items-center">
             <div>
               <h1 className="soft-title text-3xl">
