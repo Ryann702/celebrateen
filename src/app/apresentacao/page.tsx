@@ -165,9 +165,9 @@ export default function PresentationPage() {
 
         <div className="mx-auto grid w-full max-w-5xl place-items-center">
           <article className="presentation-question">
-            {currentQuestion.name ? (
-              <p className="presentation-name">{currentQuestion.name}</p>
-            ) : null}
+            <p className="presentation-name">
+              {currentQuestion.name || "Anônimo"}
+            </p>
             <h1
               className={`text-balance break-words font-semibold leading-tight text-slate-800 ${questionTextSize}`}
             >
