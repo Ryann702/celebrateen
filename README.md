@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Celebra Teen Perguntas
 
-## Getting Started
+Aplicação web para receber perguntas pelo QR Code, selecionar perguntas na área administrativa e exibir uma pergunta por vez no telão.
 
-First, run the development server:
+## Rotas
+
+- `/` - pagina publica do QR Code.
+- `/admin` - área administrativa protegida por senha simples.
+- `/apresentacao` - modo telão com tela de espera e navegação por setas.
+
+## Banco de dados
+
+O projeto usa Supabase pelo backend do Next.js.
+
+1. Crie um projeto no Supabase.
+2. Rode o SQL em `supabase/schema.sql` no SQL Editor.
+3. Copie `.env.example` para `.env.local`.
+4. Preencha:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+SUPABASE_URL=https://seu-projeto.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=sua-service-role-key
+ADMIN_PASSWORD=uma-senha-forte
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Use a `service_role key` apenas em variáveis server-side no Vercel. Ela não é enviada para o navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Desenvolvimento
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Abra `http://localhost:3000`.
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy na Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Envie o projeto para um repositorio Git.
+2. Importe na Vercel.
+3. Configure as mesmas variáveis do `.env.local` em Project Settings > Environment Variables.
+4. Faça o deploy.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Uso no evento
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Gere um QR Code apontando para a URL publica do deploy.
+2. Abra `/admin`, digite a senha e selecione as perguntas.
+3. Ordene usando os botões de subir e baixar.
+4. Clique em `Iniciar apresentação`.
+5. No telão, use seta direita para começar/avançar e seta esquerda para voltar.
